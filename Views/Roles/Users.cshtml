@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewBag.Title = "Users";
+}
+
+        <h2>Пользователи для роли @ViewBag.RoleName</h2>
+        <hr />
+        <table class="table">
+            <tr>
+                <th>
+                    Пользователь
+                </th>
+                <th>
+                    Действие
+                </th>
+            </tr>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        @user.UserName
+                    </td>
+                    <td>                     
+                        @using (Html.BeginForm("DelUser", "Roles", FormMethod.Post))
+                        {
+                            @Html.Hidden("UserId", user.Id)
+                            @Html.Hidden("RoleName",ViewBag.RoleName as string)
+                            <button type="submit">Удалить из роли</button>
+                        }
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="2" align="center">
+                    @Html.ActionLink("Добавить пользователей в роль", "AddUsers", new { Id = ViewBag.RoleName }, new { @class="btn btn-primary"})
+                    @Html.ActionLink("Назад","Index",null,new { @class="btn btn-primary",@style="padding-left:10px;" })
+                </td>
+            </tr>
+            </table>
+            
+
+
+    
+

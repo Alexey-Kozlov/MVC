@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+
+
+</head>
+<body>
+    <div class="container body-content">
+        <nav class="navbar navbar-light bg-light navbar-expand-sm" style="margin-bottom:20px">
+            @Html.ActionLink("MVC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Справочники</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            @Html.ActionLink("Продукты", "Index", "Products", new { area = "" }, new { @class = "dropdown-item" })
+                        </div>
+                    </li>
+                </ul>
+               @Html.Partial("_LoginPartial")
+        </nav>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - мое приложение ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

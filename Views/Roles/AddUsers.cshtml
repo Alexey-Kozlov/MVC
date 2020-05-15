@@ -1,0 +1,34 @@
+﻿@model ApplicationRole
+    @{ 
+            int Counter = 0;
+    }
+@{
+    ViewBag.Title = "AddUsers";
+}
+
+<h2>Назначение пользователей на роль @Model.Name</h2>
+@using (Html.BeginForm(FormMethod.Post))
+{
+<table class="table">
+    <tr>
+        <th>Пользователь</th>
+        <th>Включить в роль</th>
+    </tr>
+    @foreach (var user in (ViewBag.Users as IEnumerable<ApplicationUser>))
+    {
+        <tr>
+            <td>@user.UserName</td>
+            <td>@Html.CheckBox("InRole[" + @Counter.ToString() + "]", false, new { @class = "InRole", @value = user.Id })</td>
+        </tr>
+    
+        Counter++;
+    
+    }
+    <tr>
+        <td colspan="2" align="center">
+            <input type="submit" value="Добавить" class="btn btn-primary" />
+            @Html.ActionLink("Назад", "Index", null, new { @class = "btn btn-primary", @style = "padding-left:10px;" })
+        </td>
+    </tr>
+</table>
+}

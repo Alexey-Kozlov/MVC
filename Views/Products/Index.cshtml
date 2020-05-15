@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MVC.Models.Products>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center Prod_title">
+            Продукты
+        </div>
+    </div>
+    <div class="row header_product">
+        <div class="col-4"> @Html.DisplayNameFor(model => model.Name)</div>
+        <div class="col-4"> @Html.DisplayNameFor(model => model.Price)</div>
+        <div class="col-4">Действие</div>
+    </div>
+    <div class="row mt-2">
+        @foreach (Products item in Model)
+        {
+            <div class="col-4">@Html.DisplayFor(p => item.Name)</div>
+            <div class="col-4">@Html.DisplayFor(p => item.Price)</div>
+            <div class="col-4">
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+             </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-12 text-right">
+            @Html.ActionLink("Create New", "Create")
+        </div>
+    </div>
+</div>
+
